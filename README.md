@@ -1,2 +1,2 @@
-# mt_newbie_keywords
-Send a message to an user without interact everytime they say "exit", "library", "out" or "build".
+# mt_help_messages
+Send a message each time an user with an specific priv says something.
