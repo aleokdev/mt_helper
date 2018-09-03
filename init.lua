@@ -1,7 +1,9 @@
 -- Array of what triggers what. Here's the syntax:
 -- "priv that the user has to have", {"words that the", "player must say", "to trigger the message"}, "message triggered when conditions are met"
 -- Additionally, if you want the message to trigger when an user DOESN'T have a priv, put a ! before the first argument, like this: "!priv"
-triggers = {{"!interact", {"exit", "library", "out", "build"},"Please read the rules and find the keyword to exit this place!"}}
+-- If you want the message to trigger regardless of any privs the user has, use the character ! as first argument.
+-- EXAMPLE: {"!interact", {"exit", "library", "out", "build"},"Please read the rules and find the keyword to exit this place!"}
+triggers = {}
 
 local function checkForKeywordsInMessage(msg, keywords)
 	for ii,keyword in ipairs(keywords) do
@@ -48,3 +50,7 @@ minetest.register_chatcommand("helpmsgs", {
 			return true, "Help messages turned " .. player:get_attribute("help_msgs_switch") .. " successfully!"
 	end,
 })
+
+function helper.add_chat_helper(priv, tg, msg)
+	table.insert(triggers, {priv, tg, msg})
+end
